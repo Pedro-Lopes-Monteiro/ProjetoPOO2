@@ -43,7 +43,9 @@ namespace ProjetoPOO2
                 decimal preco = decimal.Parse(txtPreco.Text);
 
                 // Obter a conexão
-                MySqlConnection conn = DatabaseConnection.GetInstance().Connection;
+                MySqlConnection conn = DatabaseConnection.GetInstance().Connection; // Obtendo a conexão do Singleton
+                conn.Open(); // Garantindo que a conexão esteja aberta
+
                 string query = "INSERT INTO Produtos (Nome, Quantidade, Preco) VALUES (@Nome, @Quantidade, @Preco)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Nome", nome);
@@ -52,6 +54,10 @@ namespace ProjetoPOO2
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Produto adicionado com sucesso!");
+
+                // Fechar a conexão após a operação
+                conn.Close();
+
                 CarregarProdutos();
             }
             catch (Exception ex)
