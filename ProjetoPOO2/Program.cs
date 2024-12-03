@@ -10,7 +10,7 @@ namespace ProjetoPOO2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormProdutos());  // Aqui é onde a janela principal é carregada
+            Application.Run(new Form1());  // Aqui é onde a janela principal é carregada
         }
     }
 }
